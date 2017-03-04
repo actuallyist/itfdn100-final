@@ -1,6 +1,5 @@
 import sys
 from random import randint
-from sortedcontainers import SortedDict
 
 """ The player should input three options when running this script:
 First, enter Name of their character
@@ -54,18 +53,38 @@ def set_gameplay_possessive(gender):
 		char_possessive = "their"
 	return char_possessive
 
-
-char_pronoun = set_gameplay_pronoun(gender)
-char_possessive = set_gameplay_possessive(gender)
-
-print("{} is playing the game".format(char_pronoun.capitalize()))
-print("It is {} game".format(char_possessive))
-
 # create function for difficulty
 # difficulty determines player's health level range
 # health random in all cases
+def dict_builder(h_low, h_high, d_low, d_high, weapon, potions):
+	battle_dict = {}
+	battle_dict["Health"] = random_number(h_low, h_high)
+	battle_dict["Weapon"] = weapon
+	battle_dict["Damage"] = random_number(d_low, d_high)
+	battle_dict["Potions"] = potions
+	return battle_dict
+
+
+def battle_dict(difficulty):
+	if difficulty == "easy":
+		char_dict = dict_builder(75, 100, 50, 70, "sword", 2)
+	elif difficulty == "normal":
+		char_dict = dict_builder(50, 100, 40, 60, "bow", 1)
+	elif difficulty == "hard":
+		char_dict = dict_builder(40, 100, 30, 50, "seasponge", 0)
+	return char_dict
+
+char_pronoun = set_gameplay_pronoun(gender)
+char_possessive = set_gameplay_possessive(gender)
+char_dict = battle_dict(difficulty)
+
+print("Your name is {} and you are {}".format(username, gender))
+print(char_dict)
+
+
 
 # create function for room sequence (can use classes here maybe)?
+
 
 # create function for battle sequence
 # damage is random number between 1-10
