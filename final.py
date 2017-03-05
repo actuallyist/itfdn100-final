@@ -1,5 +1,6 @@
 import sys
 from random import randint
+from sortedcontainers import SortedDict
 
 """ The player should input three options when running this script:
 First, enter Name of their character
@@ -74,12 +75,55 @@ def battle_dict(difficulty):
 		char_dict = dict_builder(40, 100, 30, 50, "seasponge", 0)
 	return char_dict
 
+# create function to print stats
+def view_stats(battle_dict):
+	for x,y in battle_dict.items():
+		print("{}: {}".format(x, y))
+
+# likelyhood of encounter based on difficulty
+def random_encounter(difficulty):
+	counter = 0
+	if difficulty == "easy":
+		counter = random_number(1,4)
+		if counter > 3:
+			enc_indicator = 1
+		else:
+			enc_indicator = 0
+	if difficulty == "normal":
+		counter = random_number(1,3)
+		if counter > 2:
+			enc_indicator = 1
+		else:
+			enc_indicator = 0
+	if difficulty == "hard":
+		counter = random_number(1,2)
+		if counter > 1:
+			enc_indicator = 1
+		else:
+			enc_indicator = 0
+	return enc_indicator
+
+# trigger the random encounter
+def trigger_encounter(indicator):
+	if indicator == 1:
+		print("You get a battle")
+	else:
+		pass
+
+
 char_pronoun = set_gameplay_pronoun(gender)
 char_possessive = set_gameplay_possessive(gender)
 char_dict = battle_dict(difficulty)
+print_stats = view_stats(char_dict)
+test_indicator = random_encounter(difficulty)
+test_trigger = trigger_encounter(test_indicator)
 
 print("Your name is {} and you are {}".format(username, gender))
 print(char_dict)
+print_stats
+print("Test indicagtor: {}".format(test_indicator))
+test_trigger
+
 
 
 
