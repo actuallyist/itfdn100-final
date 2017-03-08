@@ -23,11 +23,15 @@ start_menu()
 
 menu_choice = 0
 
-#try:
-	#while menu_choice != 2:
-		#menu_choice = int(input("Please enter your selection: "))
-#except ValueError:
-	#print("That is not a valid selection.  Please try again")
+# start game if 1 is pressed
+while menu_choice != 2 or 1:
+	menu_choice = int(input("Please enter your selection: "))
+	try:
+		if menu_choice == 1:
+			break
+		elif menu_choice == 2:
+		quit()
+
 
 # create random number generator
 def random_number(num1, num2):
@@ -110,6 +114,18 @@ def trigger_encounter(indicator):
 	else:
 		pass
 
+# store new items in inventory
+def add_to_inventory(item, battle_dict):
+	if item in battle_dict:
+		battle_dict[item] = int(battle_dict[item]) + 1
+	else:
+		battle_dict[item] = 1
+	return battle_dict
+
+
+
+
+
 
 char_pronoun = set_gameplay_pronoun(gender)
 char_possessive = set_gameplay_possessive(gender)
@@ -119,10 +135,10 @@ test_indicator = random_encounter(difficulty)
 test_trigger = trigger_encounter(test_indicator)
 
 print("Your name is {} and you are {}".format(username, gender))
-print(char_dict)
-print_stats
 print("Test indicagtor: {}".format(test_indicator))
 test_trigger
+add_to_inventory("Flower", char_dict)
+print(char_dict)
 
 
 
