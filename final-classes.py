@@ -72,6 +72,7 @@ class Gameplay():
 		rand_val = randint(val1, val2)
 		return rand_val
 
+	# build the character attribute dictionary
 	@staticmethod
 	def dict_builder(h_low, h_high, d_low, d_high, weapon, potions):
 		battle_dict = {}
@@ -81,6 +82,23 @@ class Gameplay():
 		battle_dict["Potions"] = potions
 		return battle_dict
 
+	# build the instance dictionary
+	@staticmethod
+	def instance_dict():
+		inst_dict = {}
+		inst_dict[1] = "This is instance 1"
+		inst_dict[2] = "This is instance 2"
+		inst_dict[31] = "This is instance 3.1"
+		inst_dict[32] = "This is instance 3.2"
+		inst_dict[41] = "This is instance 4.1"
+		inst_dict[42] = "This is instance 4.2"
+		inst_dict[51] = "This is instance 5.1"
+		inst_dict[52] = "This is instance 5.2"
+		inst_dict[53] = "This is instance 5.3"
+		inst_dict[54] = "This is instance 5.4"
+		return inst_dict
+
+	# assign attributes based on difficulty
 	def battle_dict(self, difficulty):
 		if self.difficulty == "easy":
 			char_dict = Gameplay.dict_builder(75, 100, 50, 70, "sword", 2)
@@ -90,10 +108,19 @@ class Gameplay():
 			char_dict = Gameplay.dict_builder(40, 100, 30, 50, "seasponge", 0)
 		return char_dict
 
+	# create function to print stats
+	def view_stats(battle_dict):
+		for x,y in battle_dict.items():
+			print("{}: {}".format(x, y))
 
 
-inst_dict = {}
-inst_dict[1] = "This is insta"
+
+
+
+
+
+
+
 
 
 
@@ -106,7 +133,7 @@ possessive = play_start.set_possessive(gender)
 play_start.start_menu()
 play_start.menu_choices()
 
-gameplay = Gameplay(difficulty, 1)
+gameplay = Gameplay(difficulty, play_start)
 char_dict = gameplay.battle_dict(difficulty)
 print(char_dict)
-
+print(gameplay.instance_dict())
