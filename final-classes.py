@@ -1,7 +1,7 @@
 import sys
 from random import randint
 from sortedcontainers import SortedDict
-import pandas
+
 
 # accept user input from command line
 username = sys.argv[1].strip().capitalize()
@@ -88,14 +88,14 @@ class Gameplay():
 		inst_dict = {}
 		inst_dict[1] = "This is instance 1"
 		inst_dict[2] = "This is instance 2"
-		inst_dict[31] = "This is instance 3.1"
-		inst_dict[32] = "This is instance 3.2"
-		inst_dict[41] = "This is instance 4.1"
-		inst_dict[42] = "This is instance 4.2"
-		inst_dict[51] = "This is instance 5.1"
-		inst_dict[52] = "This is instance 5.2"
-		inst_dict[53] = "This is instance 5.3"
-		inst_dict[54] = "This is instance 5.4"
+		inst_dict[3] = "This is instance 3.1"
+		inst_dict[4] = "This is instance 3.2"
+		inst_dict[5] = "This is instance 4.1"
+		inst_dict[6] = "This is instance 4.2"
+		inst_dict[7] = "This is instance 5.1"
+		inst_dict[8] = "This is instance 5.2"
+		inst_dict[9] = "This is instance 5.3"
+		inst_dict[10] = "This is instance 5.4"
 		return inst_dict
 
 	# assign attributes based on difficulty
@@ -109,28 +109,90 @@ class Gameplay():
 		return char_dict
 
 	# create function to print stats
+	@staticmethod
 	def view_stats(battle_dict):
 		for x,y in battle_dict.items():
 			print("{}: {}".format(x, y))
 
 
+def straight_instance(instance_dict, stats, game_counter):
+	print(instance_dict[game_counter])
+	user_input = input("Please enter your selection: ")
+	if user_input == "stats".strip().lower():
+		print(stats)
+	elif user_input == "straight".strip().lower():
+		if game_counter == 1:
+			game_counter = game_counter + 1
+		elif game_counter == 3 or 4:
+			game_counter = game_counter + 2
+		return game_counter
+
+def branched_instance(instance_dict, stats, game_counter):
+	print(instance_dict[game_counter])
+	user_input = input("Please enter your selection: ")
+	if user_input == "stats".strip().lower():
+		print(stats)
+	elif user_input == "left".strip().lower():
+		if game_counter == 2:
+			game_counter = game_counter + 1
+		elif game_counter == 5:
+			game_counter = game_counter + 2
+		elif game_counter == 6:
+			game_counter = game_counter + 3
+		return game_counter
+	elif user_input == "right".strip().lower():
+		if game_counter == 2:
+			game_counter = game_counter + 2
+		elif game_counter == 5:
+			game_counter = game_counter + 3
+		elif game_counter == 6:
+			game_counter = game_counter + 4
+		return game_counter
 
 
 
-
-
-
-
-
-
-
-
+# sets gender and pronouns for story based on user input
 play_start = StartGame(username, gender, 0)
-
 pronoun = play_start.set_pronoun(gender)
 possessive = play_start.set_possessive(gender)
 
+#show the start menu
 play_start.start_menu()
+
+counter = play_start.menu_choices()
+
+# start the game
+if counter == 1:
+	gameplay = Gameplay(difficulty, play_start)
+	char_dict = gameplay.battle_dict(difficulty)
+	stats = gameplay.view_stats(char_dict)
+	inst_dict = gameplay.instance_dict()
+	straight_instance(inst_dict, stats, counter)
+elif counter != 1:
+	print("Stop testing non-gameplay")
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 play_start.menu_choices()
 
 gameplay = Gameplay(difficulty, play_start)
