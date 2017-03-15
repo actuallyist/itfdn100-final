@@ -62,9 +62,8 @@ class StartGame():
 
 class Gameplay():
 
-	def __init__(self, difficulty, menu_choice):
+	def __init__(self, difficulty):
 		self.difficulty = difficulty
-		self.menu_choice = menu_choice
 	
 	# create random number generator
 	@staticmethod
@@ -108,11 +107,9 @@ class Gameplay():
 			char_dict = Gameplay.dict_builder(40, 100, 30, 50, "seasponge", 0)
 		return char_dict
 
-	# create function to print stats
-	@staticmethod
-	def view_stats(battle_dict):
-		for x,y in battle_dict.items():
-			print("{}: {}".format(x, y))
+class InstanceProg():
+
+	def __init__(self, instance_dict, stats, game_counter):
 
 
 def straight_instance(instance_dict, stats, game_counter):
