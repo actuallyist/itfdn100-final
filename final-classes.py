@@ -109,42 +109,51 @@ class Gameplay():
 
 class InstanceProg():
 
-	def __init__(self, instance_dict, stats, game_counter):
+	game_counter = 1
+
+	def __init__(self, instance_dict, stats):
+		self.instance_dict = instance_dict
+		self.stats = stats
 
 
-def straight_instance(instance_dict, stats, game_counter):
-	print(instance_dict[game_counter])
+def straight_instance(instance_dict, stats):
+	print(self.instance_dict[InstanceProg.game_counter])
 	user_input = input("Please enter your selection: ")
 	if user_input == "stats".strip().lower():
-		print(stats)
+		print(self.stats)
+		continue
 	elif user_input == "straight".strip().lower():
-		if game_counter == 1:
-			game_counter = game_counter + 1
-		elif game_counter == 3 or 4:
-			game_counter = game_counter + 2
-		return game_counter
+		if InstanceProg.game_counter == 1:
+			InstanceProg.game_counter = InstanceProg.game_counter + 1
+		elif InstanceProg.game_counter == 3 or 4:
+			InstanceProg.game_counter = InstanceProg.game_counter + 2
+		
 
 def branched_instance(instance_dict, stats, game_counter):
-	print(instance_dict[game_counter])
+	print(self.instance_dict[InstanceProg.game_counter])
 	user_input = input("Please enter your selection: ")
 	if user_input == "stats".strip().lower():
-		print(stats)
+		print(self.stats)
+		continue
 	elif user_input == "left".strip().lower():
-		if game_counter == 2:
-			game_counter = game_counter + 1
-		elif game_counter == 5:
-			game_counter = game_counter + 2
-		elif game_counter == 6:
-			game_counter = game_counter + 3
-		return game_counter
+		if InstanceProg.game_counter == 2:
+			InstanceProg.game_counter = InstanceProg.game_counter + 1
+		elif InstanceProg.game_counter == 5:
+			InstanceProg.game_counter = InstanceProg.game_counter + 2
+		elif InstanceProg.game_counter == 6:
+			InstanceProg.game_counter = InstanceProg.game_counter + 3
 	elif user_input == "right".strip().lower():
-		if game_counter == 2:
-			game_counter = game_counter + 2
-		elif game_counter == 5:
-			game_counter = game_counter + 3
-		elif game_counter == 6:
-			game_counter = game_counter + 4
-		return game_counter
+		if InstanceProg.game_counter == 2:
+			InstanceProg.game_counter = InstanceProg.game_counter + 2
+		elif InstanceProg.game_counter == 5:
+			InstanceProg.game_counter = InstanceProg.game_counter + 3
+		elif InstanceProg.game_counter == 6:
+			InstanceProg.game_counter = InstancePro.game_counter + 4
+
+@staticmethod
+def instance_prog():
+	while InstanceProg.game_counter <= 6
+
 
 
 
