@@ -107,6 +107,12 @@ class Gameplay():
 			char_dict = Gameplay.dict_builder(40, 100, 30, 50, "seasponge", 0)
 		return char_dict
 
+
+	@staticmethod
+	def view_stats(battle_dict):
+		for x,y in battle_dict.items():
+			print("{}: {}".format(x, y))
+
 class InstanceProg():
 
 	game_counter = 1
@@ -116,8 +122,8 @@ class InstanceProg():
 		self.stats = stats
 
 
-def straight_instance(instance_dict, stats):
-	print(self.instance_dict[InstanceProg.game_counter])
+def straight_instance(self, instance_dict, stats):
+	print(self.instance_dict[InstanceProg.game_counter()])
 	user_input = input("Please enter your selection: ")
 	if user_input == "stats".strip().lower():
 		print(self.stats)
@@ -129,8 +135,8 @@ def straight_instance(instance_dict, stats):
 			InstanceProg.game_counter = InstanceProg.game_counter + 2
 		
 
-def branched_instance(instance_dict, stats, game_counter):
-	print(self.instance_dict[InstanceProg.game_counter])
+def branched_instance(self, instance_dict, stats, game_counter):
+	print(self.instance_dict[InstanceProg.game_counter()])
 	user_input = input("Please enter your selection: ")
 	if user_input == "stats".strip().lower():
 		print(self.stats)
@@ -152,7 +158,15 @@ def branched_instance(instance_dict, stats, game_counter):
 
 @staticmethod
 def instance_prog():
-	while InstanceProg.game_counter <= 6
+	while InstanceProg.game_counter <= 6:
+		if InstanceProg.game_counter == 1 or 3 or 4:
+			content = InstanceProg.straight_instance(instance_dict, stats)
+		elif InstanceProg.game_counter == 2:
+			content = InstanceProg.branched_instance(instance_dict, stats)
+	if InstanceProg.game_counter == 5 or 6:
+		content = InstanceProg.branched_instance(instance_dict, stats)
+		print("Congratulations! You finished the game!")
+		break
 
 
 
@@ -167,15 +181,8 @@ play_start.start_menu()
 
 counter = play_start.menu_choices()
 
-# start the game
 if counter == 1:
-	gameplay = Gameplay(difficulty, play_start)
-	char_dict = gameplay.battle_dict(difficulty)
-	stats = gameplay.view_stats(char_dict)
-	inst_dict = gameplay.instance_dict()
-	straight_instance(inst_dict, stats, counter)
-elif counter != 1:
-	print("Stop testing non-gameplay")
+	gameplay = Gameplay(difficulty)
 
 
 
